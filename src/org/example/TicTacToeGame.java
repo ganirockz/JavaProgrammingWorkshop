@@ -13,20 +13,26 @@ public class TicTacToeGame {
 
 		System.out.println("Welcome to TicTacToe game");
 		createBoard();
-		PLAYER = playerInput();
-
-		if (PLAYER == 'X') {
-			COMPUTER = 'O';
-		} else {
-			COMPUTER = 'X';
+		while (true) {
+			System.out.println("Do you want to play?(y/n)");
+			char play = sc.next().charAt(0);
+			if(play == 'y') {
+			PLAYER = playerInput();
+			if (PLAYER == 'X') {
+				COMPUTER = 'O';
+			} else {
+				COMPUTER = 'X';
+			}
+			System.out.println("player mark: " + PLAYER);
+			System.out.println("computer mark: " + COMPUTER);
+			showBoard();
+			selectIndex();
+			showBoard();}
+			else {
+				System.out.println("Thanks for playing");
+				break;
+			}
 		}
-		System.out.println("player mark: " + PLAYER);
-		System.out.println("computer mark: " + COMPUTER);
-		showBoard();
-		selectIndex();
-		showBoard();
-		selectIndex();
-		showBoard();
 	}
 
 	public static void selectIndex() {
@@ -42,7 +48,8 @@ public class TicTacToeGame {
 			}
 		}
 	}
-	public static boolean isFreeSpace(char[] board,int index) {
+
+	public static boolean isFreeSpace(char[] board, int index) {
 		return board[index] == ' ';
 	}
 
