@@ -36,68 +36,71 @@ public class TicTacToeGame {
 			}
 		}
 		while (true) {
-			System.out.println("Do you want to play?(y/n)");
-			char play = sc.next().charAt(0);
-			if (play == 'y') {
-				showBoard();
-				selectIndex();
-				showBoard();
-			} else {
-				System.out.println("Thanks for playing");
-				break;
-			}
+			showBoard();
+			selectIndex();
+			showBoard();
 			boolean isWin = IsWin();
 			boolean isTie = IsTie();
-			if(isWin || isTie) {
+			if (isWin || isTie) {
+				if(isTie) {
+					System.out.println("Tie!!");
+				}
 				break;
 			}
 		}
 	}
+
 	public static boolean IsTie() {
 		boolean flag = true;
 		int count = 0;
-		for(int i=1;i<10;i++) {
-			if(BOARD[i] != ' ') {
+		for (int i = 1; i < 10; i++) {
+			if (BOARD[i] != ' ') {
 				count++;
 			}
 		}
-		if(count == 10) {
+		if (count == 10) {
 			flag = true;
-		}
-		else {
+		} else {
 			flag = false;
 		}
 		return flag;
 	}
+
 	public static boolean IsWin() {
-		if(IsPlayerTurn) {
-			if((PLAYER == BOARD[1] && PLAYER == BOARD[2]&& PLAYER == BOARD[3])||
-					(PLAYER == BOARD[4] && PLAYER == BOARD[5]&& PLAYER == BOARD[6])||
-					(PLAYER == BOARD[7] && PLAYER == BOARD[8]&& PLAYER == BOARD[9])
-					) {
+		if (IsPlayerTurn) {
+			if ((PLAYER == BOARD[1] && PLAYER == BOARD[2] && PLAYER == BOARD[3])
+					|| (PLAYER == BOARD[4] && PLAYER == BOARD[5] && PLAYER == BOARD[6])
+					|| (PLAYER == BOARD[7] && PLAYER == BOARD[8] && PLAYER == BOARD[9])
+					|| (PLAYER == BOARD[1] && PLAYER == BOARD[4] && PLAYER == BOARD[7])
+					|| (PLAYER == BOARD[2] && PLAYER == BOARD[5] && PLAYER == BOARD[8])
+					|| (PLAYER == BOARD[3] && PLAYER == BOARD[6] && PLAYER == BOARD[9])
+					|| (PLAYER == BOARD[1] && PLAYER == BOARD[5] && PLAYER == BOARD[9])
+					|| (PLAYER == BOARD[3] && PLAYER == BOARD[5] && PLAYER == BOARD[7])) {
 				System.out.println("Player wins");
 				return true;
-			}
-			else {
+			} else {
 				IsPlayerTurn = false;
 				IsComputerTurn = true;
 			}
-		}
-		else {
-			if((COMPUTER == BOARD[1] && COMPUTER == BOARD[2]&& COMPUTER == BOARD[3])||
-					(COMPUTER == BOARD[4] && COMPUTER == BOARD[5]&& COMPUTER == BOARD[6])||
-					(COMPUTER == BOARD[7] && COMPUTER == BOARD[8]&& COMPUTER == BOARD[9])
-					) {
+		} else {
+			if ((COMPUTER == BOARD[1] && COMPUTER == BOARD[2] && COMPUTER == BOARD[3])
+					|| (COMPUTER == BOARD[4] && COMPUTER == BOARD[5] && COMPUTER == BOARD[6])
+					|| (COMPUTER == BOARD[7] && COMPUTER == BOARD[8] && COMPUTER == BOARD[9])
+					|| (COMPUTER == BOARD[1] && COMPUTER == BOARD[4] && COMPUTER == BOARD[7])
+					|| (COMPUTER == BOARD[2] && COMPUTER == BOARD[5] && COMPUTER == BOARD[8])
+					|| (COMPUTER == BOARD[3] && COMPUTER == BOARD[6] && COMPUTER == BOARD[9])
+					|| (COMPUTER == BOARD[1] && COMPUTER == BOARD[5] && COMPUTER == BOARD[9])
+					|| (COMPUTER == BOARD[2] && COMPUTER == BOARD[5] && COMPUTER == BOARD[7])) {
 				System.out.println("computer wins");
 				return true;
-			}
-			else {
+			} else {
 				IsPlayerTurn = true;
 				IsComputerTurn = false;
 			}
 		}
 		return false;
 	}
+
 	public static void selectIndex() {
 		while (true) {
 			System.out.println("Enter the index from 1 to 9 where you want to place your move");
