@@ -36,8 +36,10 @@ public class TicTacToeGame {
 		return input;
 	}
 	public static void showBoard() {
-		for(int i=1;i<10;i++) {
-			System.out.println("The move at positon "+i+" is:"+BOARD[i]);
-		}
+		System.out.println(BOARD[1]+" | "+BOARD[2]+" | "+BOARD[3]);
+		System.out.println("----------");
+		System.out.println(BOARD[4]+" | "+BOARD[5]+" | "+BOARD[6]);
+		System.out.println("----------");
+		System.out.println(BOARD[7]+" | "+BOARD[8]+" | "+BOARD[9]);
 	}
 }
