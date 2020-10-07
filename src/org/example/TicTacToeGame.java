@@ -8,20 +8,41 @@ public class TicTacToeGame {
 	static int INDEX;
 	static char PLAYER = ' ';
 	static char COMPUTER = ' ';
-
+	static boolean HEAD,TAIL;
 	public static void main(String[] args) {
 
 		System.out.println("Welcome to TicTacToe game");
 		createBoard();
+		int toss = (int)(Math.random()*10)%2;
+		if(toss == 0) {
+			HEAD = true;
+			TAIL = false;
+		}
+		else {
+			HEAD = false;
+			TAIL = true;
+		}
 		while (true) {
 			System.out.println("Do you want to play?(y/n)");
 			char play = sc.next().charAt(0);
 			if(play == 'y') {
-			PLAYER = playerInput();
-			if (PLAYER == 'X') {
-				COMPUTER = 'O';
+			char input = playerInput();
+			if (HEAD) {
+				PLAYER = input;
+				if(PLAYER == 'X') {
+					COMPUTER = 'O';
+				}
+				else {
+					COMPUTER = 'X';
+				}
 			} else {
-				COMPUTER = 'X';
+				COMPUTER = input;
+				if(COMPUTER == 'X') {
+					PLAYER = 'O';
+				}
+				else {
+					PLAYER = 'X';
+				}
 			}
 			System.out.println("player mark: " + PLAYER);
 			System.out.println("computer mark: " + COMPUTER);
