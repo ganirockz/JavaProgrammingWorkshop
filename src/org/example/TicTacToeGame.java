@@ -25,6 +25,8 @@ public class TicTacToeGame {
 		showBoard();
 		selectIndex();
 		showBoard();
+		selectIndex();
+		showBoard();
 	}
 
 	public static void selectIndex() {
