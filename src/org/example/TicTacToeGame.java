@@ -18,9 +18,9 @@ public class TicTacToeGame {
 		} else {
 			computer = 'X';
 		}
-
 		System.out.println("player mark: " + player);
 		System.out.println("computer mark: " + computer);
+		showBoard();
 	}
 
 	public static void createBoard() {
@@ -34,5 +34,10 @@ public class TicTacToeGame {
 		System.out.println("Choose a letter 'X' or 'O' as input:");
 		char input = sc.next().charAt(0);
 		return input;
+	}
+	public static void showBoard() {
+		for(int i=1;i<10;i++) {
+			System.out.println("The move at positon "+i+" is:"+BOARD[i]);
+		}
 	}
 }
