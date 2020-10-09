@@ -47,7 +47,7 @@ public class TicTacToeGame {
 			boolean isWin = IsWin();
 			boolean isTie = IsTie();
 			if (isWin || isTie) {
-				if (isTie) {
+				if (isTie && !isWin) {
 					System.out.println("Tie!!");
 				}
 				break;
@@ -108,13 +108,13 @@ public class TicTacToeGame {
 				if (isFreeSpace(BOARD, INDEX) && (INDEX > 0) && (INDEX < 10)) {
 					System.out.println("Its valid move");
 					BOARD[INDEX] = PLAYER;
-					if(IsWin()) {
+					if (IsWin()) {
+						break;
+					} else {
+						IsPlayerTurn = false;
+						IsComputerTurn = true;
 						break;
 					}
-					else {
-					IsPlayerTurn = false;
-					IsComputerTurn = true;
-					break;}
 				} else {
 					System.out.println("Already occupied! please select another index");
 				}
@@ -131,8 +131,8 @@ public class TicTacToeGame {
 						IsComputerTurn = false;
 						break;
 					} else {
-						selectCorner();
-						BOARD[INDEX] = COMPUTER;
+						int corner = selectCorner();
+						BOARD[corner] = COMPUTER;
 						IsPlayerTurn = true;
 						IsComputerTurn = false;
 						break;
@@ -218,12 +218,28 @@ public class TicTacToeGame {
 		IsComputerTurn = true;
 		return 0;
 	}
-	public static void selectCorner() {
-		while(true) {
-			INDEX = (int)(Math.random()*10)%10;
-			if((INDEX != 5)&&(isFreeSpace(BOARD, INDEX))) {
-				break;
+
+	public static int selectCorner() {
+		int corner = 5;
+		if (isCornerAvailable()) {
+			while (true) {
+				corner = (int) (Math.random() * 10) % 10;
+				if ((corner != 5) && (isFreeSpace(BOARD, corner))) {
+					return corner;
+				}
 			}
 		}
+		return corner;
+	}
+
+	public static boolean isCornerAvailable() {
+		for (int i = 1; i < 9; i++) {
+			if (i == 5) {
+				continue;
+			} else if (BOARD[i] == ' ') {
+				return true;
+			}
+		}
+		return false;
 	}
 }
